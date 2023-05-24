@@ -1,35 +1,23 @@
 # Movie Recommendation Chatbot
 
-This Movie Recommendation Chatbot is a Python-based application that provides personalized movie recommendations based on user input. The chatbot utilizes a dataset of movies, applies machine learning techniques for analysis, and recommends similar movies to the user.
+The Movie Recommendation Chatbot is a Python-based application that provides personalized movie recommendations based on user input. It utilizes a dataset of movies obtained from the Kaggle platform. The dataset, titled "The Movies Dataset," is created by Rounak Banik and can be found at the following link: [The Movies Dataset](https://www.kaggle.com/rounakbanik/the-movies-dataset).
 
-## Dataset
+## Dataset Overview
 
-The dataset used for this project contains information about movies, including their titles, genres, overview, popularity, production countries, vote average, vote count, and ratings. The dataset is in CSV format and is named `combined_df_clean.csv`.
+The Movies Dataset is a comprehensive collection of movie-related information, including details about movies, ratings, genres, production companies, and more. The dataset is sourced from various data providers and encompasses a wide range of movies from different genres, languages, and release years.
+
+The dataset consists of multiple CSV files, providing information about movies, credits, ratings, and keywords. It includes attributes such as movie titles, genres, production countries, original language, overviews, popularity, vote average, vote count, and ratings.
 
 ## Methodology
 
-The chatbot employs the following methodology to recommend similar movies:
+The Movie Recommendation Chatbot employs the following methodology to provide movie recommendations:
 
-1. Data Preprocessing:
-   - The movie dataset is loaded into a Pandas DataFrame.
-   - Text preprocessing techniques are applied to the 'overview' column, including tokenization, lowercasing, removal of stopwords and punctuation, and lemmatization.
-   - The 'genres' column is processed by extracting genre names from the list of dictionaries and transforming them into a single string.
-   - The processed text data is stored in new columns for analysis.
+1. Data Preprocessing: The dataset is preprocessed to extract relevant features and clean the data. Text columns, such as overviews and genres, undergo preprocessing steps such as tokenization, lowercasing, removal of stopwords and punctuation, and lemmatization.
 
-2. Feature Extraction:
-   - The TF-IDF vectorization technique is used to convert the processed 'overview' and 'genres' columns into numerical representations.
-   - The vectorized data is combined with other relevant columns, including 'adult', 'original_language', 'popularity', 'production_countries', 'vote_average', 'vote_count', 'rating', and 'cluster_label', to form the feature matrix for analysis.
+2. Feature Extraction: The preprocessed text data is transformed into numerical representations using the TF-IDF (Term Frequency-Inverse Document Frequency) technique. This allows the chatbot to perform similarity calculations based on the movie features.
 
-3. Clustering:
-   - The K-means clustering algorithm is applied to group similar movies based on their features.
-   - The optimal number of clusters is determined using techniques such as the elbow method or silhouette score.
+3. Clustering: The K-means clustering algorithm is applied to group similar movies based on their features. The optimal number of clusters is determined using techniques such as the elbow method or silhouette score. Each movie is assigned a cluster label.
 
-4. Similarity Calculation:
-   - For each user input, the chatbot identifies the movie's ID from the dataset using the movie title provided.
-   - The movie's features are extracted from the dataset, and its cluster label is determined.
-   - Movies in the same cluster as the input movie are considered similar.
-   - Cosine similarity is calculated between the input movie and other movies in the same cluster to determine their similarity scores.
+4. Similarity Calculation: Cosine similarity is used to calculate similarity scores between the user's input movie and other movies in the same cluster. The higher the similarity score, the more similar the movies are considered to be.
 
-5. Movie Recommendation:
-   - The top N movies with the highest similarity scores are recommended as similar movies to the user.
-   - The recommended movies are displayed to the user as a list.
+5. Recommendation Generation: The chatbot recommends the top N movies with the highest similarity scores as similar movies to the user. The recommended movies are displayed based on the user's input movie.
